@@ -1,0 +1,21 @@
+        if user_message[0] == '?':
+            user_message = user_message[1:]
+            await send_message(message, user_message, is_private=True)
+        else:
+            await send_message(message, user_message, is_private=False)
+
+       if message.content.startswith('<@1193176493430423635'):
+            await send_message(message, user_message)
+        
+        if message.content.startswith('<@1193176493430423635> New Rumour: '):
+            await new_rumour(message, user_message)
+
+
+async def new_rumour(message, user_message):
+
+    try:
+        storage_channel = client.get_channel(1193210556988006400)
+        await message.storage_channel.send(user_message)
+        
+    except Exception as e:
+        print(e)
